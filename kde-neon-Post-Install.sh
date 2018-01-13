@@ -49,7 +49,7 @@ echo -e ''
 wgetpkgsNinst () {
 echo -e ''
 echo -e '\e[7mGetting DEB PKGS.\e[0m'
-for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 do
 wget $pkgdebs &> /dev/null
 done
@@ -72,7 +72,7 @@ echo -e ''
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
-for pkgdebins in teamviewer-host_amd64.deb google-chrome-stable_current_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb}
+for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb}
 do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
