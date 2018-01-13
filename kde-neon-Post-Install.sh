@@ -95,9 +95,12 @@ plasmapkg2 -i $plasmoidsins &> /dev/null
 done
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
+}
 
+endgreet () {
 echo -e ''
 echo -e '\e[7mFinished With the All Downloads & Installing Debs & Plasmoids.\e[0m'
+echo -e '\e[7mIm done Now you go Enjoy KDE Neon.\e[0m'
 echo -e ''
 }
 
@@ -2083,3 +2086,4 @@ rawplasmoidscnv
 wgetpkgsNinst
 delpkgs
 delppas
+endgreet
