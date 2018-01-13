@@ -21,7 +21,6 @@ do
 rm $f
 done
 echo -e '\e[7mRemoved.\e[0m'
-echo -e ''
 }
 
 delpkgs () {
@@ -32,7 +31,6 @@ do
 rm $f
 done
 echo -e '\e[7mRemoved.\e[0m'
-echo -e ''
 }
 
 getchppNinst () {
@@ -43,7 +41,6 @@ sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable
 sudo apt update &> /dev/null
 sudo apt install google-chrome-stable -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 wgetppadata () {
@@ -54,7 +51,6 @@ do
 wget $ppas &> /dev/null
 done
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 wgetpkgsNinst () {
@@ -79,7 +75,6 @@ wget --accept "*.deb" --content-disposition --trust-server-names "https://go.mic
 chkcodedeb="$(ls | grep -E 'code')"
 codedeb="$chkcodedeb"
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
@@ -88,13 +83,11 @@ do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 
 echo -e ''
 echo -e '\e[7mInstalling gitkraken dependencies.\e[0m'
 sudo apt install libgnome-keyring-common libgnome-keyring-dev -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 
 rm ${bcomdeb} ${codedeb}
 
@@ -105,7 +98,6 @@ do
 plasmapkg2 -i $plasmoidsins &> /dev/null
 done
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 endgreet () {
@@ -133,7 +125,6 @@ sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/cvlc.1.gz.diver
 sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/nvlc.1.gz.divert --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/rvlc.1.gz.divert --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 rmdivertpkgs () {
@@ -154,7 +145,6 @@ sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/cvlc.1
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 chkpp1 () {
@@ -220,12 +210,10 @@ sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
 fi
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
-echo -e ''
 echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt -y purge firefox* vim -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 getchppNinst
 divertpkgs
 echo -e ''
@@ -234,12 +222,10 @@ sudo apt update &> /dev/null
 sudo apt upgrade -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
-echo -e ''
 echo -e '\e[7mAPT install -f & autoremove if any FOUND.\e[0m'
 sudo apt install -f -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 
 rawplasmoidscnv () {
 echo -e ''
@@ -2090,7 +2076,6 @@ base64 -d $PATM64 > $PATM
 
 rm $SDT64 $NW64 $PATM64
 echo -e '\e[7mDone.\e[0m'
-echo -e ''
 }
 
 rmdivertpkgs
