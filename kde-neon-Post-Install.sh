@@ -1,13 +1,10 @@
 #!/usr/bin/env bash
 #
-#
 # Author:
 #   mmtrt (Taqi Raza) [mttalpur@gmail.com]
 #
-#
 # Description:
 #   A post-installation bash script KDE Neon
-#
 #
 # Date: Jan 12 2018
 #
