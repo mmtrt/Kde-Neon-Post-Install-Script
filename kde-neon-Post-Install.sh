@@ -103,7 +103,7 @@ echo -e ''
 
 divertpkgs () {
 echo -e ''
-echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for smooth upgrade.\e[0m'
+echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for new upgrade.\e[0m'
 sudo dpkg-divert --package libdrm-common --divert /usr/share/libdrm/amdgpu.ids.divert --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
 sudo dpkg-divert --package vlc --divert /usr/bin/qvlc.divert --rename /usr/bin/qvlc &> /dev/null
 sudo dpkg-divert --package vlc-nox  --divert /usr/bin/cvlc.divert --rename /usr/bin/cvlc &> /dev/null
@@ -207,23 +207,23 @@ fi
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e ''
-echo -e '\e[7mAPT Purging FireFox & VIM.\e[0m'
+echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt -y purge firefox* vim -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
-echo -e '\e[7mDone also Done APT autoremove for any leftovers.\e[0m'
+echo -e '\e[7mDone.\e[0m'
 echo -e ''
 divertpkgs
 echo -e ''
-echo -e '\e[7mAPT updating with new PPAs.\e[0m'
+echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
 sudo apt update &> /dev/null
 sudo apt upgrade -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e ''
-echo -e '\e[7mAPT Fixing Any Broken PKGS.\e[0m'
+echo -e '\e[7mAPT install -f & autoremove if any FOUND.\e[0m'
 sudo apt install -f -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
-echo -e '\e[7mDone also Done with the APT autoremove if any FOUND.\e[0m'
+echo -e '\e[7mDone.\e[0m'
 echo -e ''
 
 rawplasmoidscnv () {
