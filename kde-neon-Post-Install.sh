@@ -33,16 +33,6 @@ done
 echo -e '\e[7mRemoved.\e[0m'
 }
 
-getchppNinst () {
-echo -e ''
-echo -e '\e[7mAdding google-chrome-stable ppa & installing it.\e[0m'
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &> /dev/null
-sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' &> /dev/null
-sudo apt update &> /dev/null
-sudo apt install google-chrome-stable -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-}
-
 wgetppadata () {
 echo -e ''
 echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
@@ -214,7 +204,6 @@ echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt -y purge firefox* vim -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-getchppNinst
 divertpkgs
 echo -e ''
 echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
