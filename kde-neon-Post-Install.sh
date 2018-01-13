@@ -26,7 +26,7 @@ echo -e '\e[7mRemoved.\e[0m'
 delpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving DEB pkgs & Plasmoids leftovers.\e[0m'
-for f in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid
+for f in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
 do
 rm $f
 done
@@ -56,7 +56,7 @@ echo -e '\e[7mDone.\e[0m'
 wgetpkgsNinst () {
 echo -e ''
 echo -e '\e[7mGetting DEB PKGS.\e[0m'
-for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
+for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb https://launchpad.net/ubuntu/+source/p7zip/16.02+dfsg-4/+build/13091326/+files/p7zip_16.02+dfsg-4_amd64.deb https://launchpad.net/ubuntu/+source/p7zip/16.02+dfsg-4/+build/13091326/+files/p7zip-full_16.02+dfsg-4_amd64.deb https://launchpad.net/ubuntu/+source/p7zip-rar/16.02-1/+build/10619354/+files/p7zip-rar_16.02-1_amd64.deb
 do
 wget $pkgdebs &> /dev/null
 done
@@ -78,7 +78,7 @@ echo -e '\e[7mDone.\e[0m'
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
-for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb}
+for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb} p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
 do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
