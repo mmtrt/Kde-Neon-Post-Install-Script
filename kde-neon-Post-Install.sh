@@ -16,12 +16,10 @@ ls | grep -E 'graphics-drivers|ffmpeg-3|index.html|ppa|xerus-media|mpv-tests|pap
 delppas () {
 echo -e ''
 echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
-echo -e ''
 for f in graphics-drivers ffmpeg-3 index.html ppa xerus-media mpv-tests papirus
 do
 rm $f
 done
-echo -e ''
 echo -e '\e[7mRemoved.\e[0m'
 echo -e ''
 }
@@ -29,12 +27,10 @@ echo -e ''
 delpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving DEB pkgs & Plasmoids leftovers.\e[0m'
-echo -e ''
 for f in teamviewer-host_amd64.deb google-chrome-stable_current_amd64.deb gitkraken-amd64.deb steam.deb 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid
 do
 rm $f
 done
-echo -e ''
 echo -e '\e[7mRemoved.\e[0m'
 echo -e ''
 }
@@ -42,12 +38,10 @@ echo -e ''
 wgetppadata () {
 echo -e ''
 echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
-echo -e ''
 for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~jonathonf/+archive/ubuntu/ffmpeg-3 https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
 do
 wget $ppas &> /dev/null
 done
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 }
@@ -55,7 +49,6 @@ echo -e ''
 wgetpkgsNinst () {
 echo -e ''
 echo -e '\e[7mGetting DEB PKGS.\e[0m'
-echo -e ''
 for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 do
 wget -c $pkgdebs &> /dev/null
@@ -74,26 +67,21 @@ bcomdeb="$chkbcomdeb"
 wget --accept "*.deb" --content-disposition --trust-server-names "https://go.microsoft.com/fwlink/?LinkID=760868" &> /dev/null
 chkcodedeb="$(ls | grep -E 'code')"
 codedeb="$chkcodedeb"
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
-echo -e ''
 for pkgdebins in teamviewer-host_amd64.deb google-chrome-stable_current_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb}
 do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 
 echo -e ''
 echo -e '\e[7mInstalling gitkraken dependencies.\e[0m'
-echo -e ''
 sudo apt install libgnome-keyring-common libgnome-keyring-dev -y &> /dev/null
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 
@@ -101,12 +89,10 @@ rm ${bcomdeb} ${codedeb}
 
 echo -e ''
 echo -e '\e[7mInstalling KDE Plasmoids.\e[0m'
-echo -e ''
 for plasmoidsins in 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid
 do
 plasmapkg2 -i $plasmoidsins &> /dev/null
 done
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 
@@ -118,7 +104,6 @@ echo -e ''
 divertpkgs () {
 echo -e ''
 echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for smooth upgrade.\e[0m'
-echo -e ''
 sudo dpkg-divert --package libdrm-common --divert /usr/share/libdrm/amdgpu.ids.divert --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
 sudo dpkg-divert --package vlc --divert /usr/bin/qvlc.divert --rename /usr/bin/qvlc &> /dev/null
 sudo dpkg-divert --package vlc-nox  --divert /usr/bin/cvlc.divert --rename /usr/bin/cvlc &> /dev/null
@@ -133,7 +118,6 @@ sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/vlc.1.gz.divert
 sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/cvlc.1.gz.divert --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/nvlc.1.gz.divert --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/rvlc.1.gz.divert --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 }
@@ -141,7 +125,6 @@ echo -e ''
 rmdivertpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving VLC & libdrm-amdgpu Diverts to properly function after upgrades.\e[0m'
-echo -e ''
 sudo dpkg-divert --package libdrm-common --remove --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
 sudo dpkg-divert --package vlc --remove --rename /usr/bin/qvlc &> /dev/null
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/cvlc &> /dev/null
@@ -156,7 +139,6 @@ sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/vlc.1.
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
 sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 }
@@ -195,7 +177,6 @@ fi
 
 echo -e ''
 echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
-echo -e ''
 if [ $(chkpp1) -eq 1 ]; then
 sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
 fi
@@ -223,39 +204,31 @@ fi
 if [ $(chkpp7) -eq 1 ]; then
 sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
 fi
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e ''
 echo -e '\e[7mAPT Purging FireFox & VIM.\e[0m'
-echo -e ''
 sudo apt -y purge firefox* vim -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
-echo -e ''
 echo -e '\e[7mDone also Done APT autoremove for any leftovers.\e[0m'
 echo -e ''
 divertpkgs
 echo -e ''
 echo -e '\e[7mAPT updating with new PPAs.\e[0m'
-echo -e ''
 sudo apt update &> /dev/null
 sudo apt upgrade -y &> /dev/null
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e ''
 echo -e '\e[7mAPT Fixing Any Broken PKGS.\e[0m'
-echo -e ''
 sudo apt install -f -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
-echo -e ''
 echo -e '\e[7mDone also Done with the APT autoremove if any FOUND.\e[0m'
 echo -e ''
 
 rawplasmoidscnv () {
 echo -e ''
 echo -e '\e[7mExtracting Plasmoids from this Script for Installing.\e[0m'
-echo -e ''
 
 SDT64="174323-Simple_Date_and_Time.b64"
 NW64="netspeed-widget-1.4.b64"
@@ -2101,7 +2074,6 @@ base64 -d $NW64 > $NW
 base64 -d $PATM64 > $PATM
 
 rm $SDT64 $NW64 $PATM64
-echo -e ''
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 }
