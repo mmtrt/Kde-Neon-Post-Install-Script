@@ -27,7 +27,7 @@ echo -e ''
 delpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving DEB pkgs & Plasmoids leftovers.\e[0m'
-for f in teamviewer-host_amd64.deb google-chrome-stable_current_amd64.deb gitkraken-amd64.deb steam.deb 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid
+for f in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.plasmoid plasma-applet-thermal-monitor.plasmoid
 do
 rm $f
 done
