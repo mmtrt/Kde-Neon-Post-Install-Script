@@ -38,7 +38,7 @@ echo -e ''
 getchppNinst () {
 echo -e ''
 echo -e '\e[7mAdding google-chrome-stable ppa & installing it.\e[0m'
-wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key -y add - &> /dev/null
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - &> /dev/null
 sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' &> /dev/null
 sudo apt update &> /dev/null
 sudo apt install google-chrome-stable -y &> /dev/null
