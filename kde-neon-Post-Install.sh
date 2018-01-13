@@ -51,7 +51,7 @@ echo -e ''
 echo -e '\e[7mGetting DEB PKGS.\e[0m'
 for pkgdebs in https://download.teamviewer.com/download/linux/teamviewer-host_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb https://release.gitkraken.com/linux/gitkraken-amd64.deb https://steamcdn-a.akamaihd.net/client/installer/steam.deb
 do
-wget -c $pkgdebs &> /dev/null
+wget $pkgdebs &> /dev/null
 done
 
 wget -O bcomp https://www.scootersoftware.com/download.php &> /dev/null
