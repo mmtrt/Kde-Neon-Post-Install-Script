@@ -234,6 +234,7 @@ echo "IconSize=48" >> dolphinrc
 
 echo "[Theme]" > plasmarc
 echo "name=breeze-dark" >> plasmarc
+
 echo "[Main]" > systemsettingsrc
 echo "ActiveView=icon_mode" >> systemsettingsrc
 
@@ -254,6 +255,7 @@ echo "kdeconnectsendfile=false" >> kservicemenurc
 echo "openTerminalHere=true" >> kservicemenurc
 echo "runInKonsole=true" >> kservicemenurc
 echo "slideshow=false" >> kservicemenurc
+
 echo "[Appearance]" > my.profile
 echo "ColorScheme=WhiteOnBlack" >> my.profile
 echo "Font=Hack,11,-1,7,50,0,0,0,0,0,Regular" >> my.profile
