@@ -720,6 +720,10 @@ class "*MenuItem" style "MenuItem"
 EOF4
 cd ..
 killall dolphin
+kquitapp5 plasmashell &> /dev/null
+sleep 3
+kstart5 plasmashell &> /dev/null
+sleep 3
 }
 
 rawplasmoidscnv () {
