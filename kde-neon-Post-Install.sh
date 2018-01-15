@@ -346,6 +346,13 @@ autoload=true
 autoload=false
 EOF
 
+echo "" >> kateschemarc
+echo "[Normal]" >> kateschemarc
+echo "dummy=prevent-empty-group" >> kateschemarc
+echo "" >> kateschemarc
+echo "[my]" >> kateschemarc
+echo "Font=Hack,12,-1,7,50,0,0,0,0,0,Regular" >> kateschemarc
+echo "dummy=prevent-empty-group" >> kateschemarc
 cd ..
 }
 
