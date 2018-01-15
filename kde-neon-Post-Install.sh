@@ -251,6 +251,30 @@ echo "kdeconnectsendfile=false" >> kservicemenurc
 echo "openTerminalHere=true" >> kservicemenurc
 echo "runInKonsole=true" >> kservicemenurc
 echo "slideshow=false" >> kservicemenurc
+echo "[Appearance]" > my.profile
+echo "ColorScheme=WhiteOnBlack" >> my.profile
+echo "Font=Hack,11,-1,7,50,0,0,0,0,0,Regular" >> my.profile
+echo "" >> my.profile
+echo "[General]" >> my.profile
+echo "Name=my" >> my.profile
+echo "Parent=FALLBACK/" >> my.profile
+echo "" >> my.profile
+echo "[Scrolling]" >> my.profile
+echo "ScrollBarPosition=2" >> my.profile
+mkdir -p ~/.local/share/konsole/
+mv my.profile ~/.local/share/konsole/
+
+echo "[Desktop Entry]" > konsolerc
+echo "DefaultProfile=my.profile" >> konsolerc
+echo "" >> konsolerc
+echo "[Favorite Profiles]" >> konsolerc
+echo "Favorites=my.profile" >> konsolerc
+echo "" >> konsolerc
+echo "[KonsoleWindow]" >> konsolerc
+echo "ShowMenuBarByDefault=false" >> konsolerc
+echo "" >> konsolerc
+echo "[TabBar]" >> konsolerc
+echo "TabBarVisibility=ShowTabBarWhenNeeded" >> konsolerc
 cd ..
 }
 
