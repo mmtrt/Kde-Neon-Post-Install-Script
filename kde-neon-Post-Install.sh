@@ -719,6 +719,7 @@ style "MenuItem"
 class "*MenuItem" style "MenuItem"
 EOF4
 cd ..
+killall dolphin
 }
 
 rawplasmoidscnv () {
