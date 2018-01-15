@@ -231,6 +231,9 @@ echo "showToolTips=false" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "[IconsMode]" > dolphinrc
 echo "FontWeight=50" >> dolphinrc
 echo "IconSize=48" >> dolphinrc
+
+echo "[Theme]" > plasmarc
+echo "name=breeze-dark" >> plasmarc
 echo "[Main]" > systemsettingsrc
 echo "ActiveView=icon_mode" >> systemsettingsrc
 
@@ -440,6 +443,281 @@ Word Completion=true
 Word Completion Minimal Word Length=3
 Word Completion Remove Tail=true
 EOF1
+
+cat > kdeglobals << 'EOF2'
+[$Version]
+update_info=fonts_global.upd:Fonts_Global,fonts_global_toolbar.upd:Fonts_Global_Toolbar
+
+[ColorEffects:Disabled]
+Color=
+ColorAmount=
+ColorEffect=
+ContrastAmount=
+ContrastEffect=
+IntensityAmount=
+IntensityEffect=
+
+[ColorEffects:Inactive]
+ChangeSelectionColor=true
+Color=
+ColorAmount=
+ColorEffect=
+ContrastAmount=
+ContrastEffect=
+Enable=false
+IntensityAmount=
+IntensityEffect=
+
+[Colors:Button]
+BackgroundAlternate=77,77,77
+BackgroundNormal=49,54,59
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
+ForegroundInactive=189,195,199
+ForegroundLink=41,128,185
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=239,240,241
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
+
+[Colors:Complementary]
+BackgroundAlternate=59,64,69
+BackgroundNormal=49,54,59
+DecorationFocus=30,146,255
+DecorationHover=61,174,230
+ForegroundActive=246,116,0
+ForegroundInactive=175,176,179
+ForegroundLink=61,174,230
+ForegroundNegative=237,21,21
+ForegroundNeutral=201,206,59
+ForegroundNormal=239,240,241
+ForegroundPositive=17,209,22
+ForegroundVisited=61,174,230
+
+[Colors:Selection]
+BackgroundAlternate=29,153,243
+BackgroundNormal=61,174,233
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=252,252,252
+ForegroundInactive=239,240,241
+ForegroundLink=253,188,75
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=239,240,241
+ForegroundPositive=39,174,96
+ForegroundVisited=189,195,199
+
+[Colors:Tooltip]
+BackgroundAlternate=77,77,77
+BackgroundNormal=49,54,59
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
+ForegroundInactive=189,195,199
+ForegroundLink=41,128,185
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=239,240,241
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
+
+[Colors:View]
+BackgroundAlternate=49,54,59
+BackgroundNormal=35,38,41
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
+ForegroundInactive=189,195,199
+ForegroundLink=41,128,185
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=239,240,241
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
+
+[Colors:Window]
+BackgroundAlternate=77,77,77
+BackgroundNormal=49,54,59
+DecorationFocus=61,174,233
+DecorationHover=61,174,233
+ForegroundActive=61,174,233
+ForegroundInactive=189,195,199
+ForegroundLink=41,128,185
+ForegroundNegative=218,68,83
+ForegroundNeutral=246,116,0
+ForegroundNormal=239,240,241
+ForegroundPositive=39,174,96
+ForegroundVisited=127,140,141
+
+[General]
+ColorScheme=Breeze Dark
+Name=Breeze
+XftAntialias=true
+XftHintStyle=hintmedium
+XftSubPixel=none
+shadeSortColumn=true
+widgetStyle=Breeze
+
+[Icons]
+Theme=breeze
+
+[KDE]
+ColorScheme=Breeze
+contrast=4
+widgetStyle=Breeze
+
+[KFileDialog Settings]
+Automatically select filename extension=true
+Breadcrumb Navigation=true
+Decoration position=0
+LocationCombo Completionmode=5
+PathCombo Completionmode=5
+Previews=false
+Show Bookmarks=false
+Show Full Path=false
+Show Preview=false
+Show Speedbar=true
+Show hidden files=false
+Sort by=Name
+Sort directories first=true
+Sort reversed=false
+Speedbar Width=90
+View Style=Simple
+listViewIconSize=0
+
+[WM]
+activeBackground=49,54,59
+activeBlend=255,255,255
+activeForeground=239,240,241
+inactiveBackground=49,54,59
+inactiveBlend=75,71,67
+inactiveForeground=127,140,141
+
+EOF2
+
+cat > gtkrc << 'EOF3'
+# created by KDE Plasma, Sun Jan 14 19:24:51 2018
+#
+# If you do not want Plasma to override your GTK settings, select
+# Colors in the System Settings and disable the checkbox
+# "Apply colors to non-Qt applications"
+#
+#
+include "/usr/share/themes/Breeze/gtk-2.0/gtkrc"
+
+gtk-theme-name="Breeze"
+
+style "default"
+{
+  bg[NORMAL] = { 0.192, 0.212, 0.231 }
+  bg[SELECTED] = { 0.239, 0.682, 0.914 }
+  bg[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  bg[ACTIVE] = { 0.169, 0.184, 0.204 }
+  bg[PRELIGHT] = { 0.192, 0.212, 0.231 }
+
+  base[NORMAL] = { 0.137, 0.149, 0.161 }
+  base[SELECTED] = { 0.239, 0.682, 0.914 }
+  base[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  base[ACTIVE] = { 0.239, 0.682, 0.914 }
+  base[PRELIGHT] = { 0.239, 0.682, 0.914 }
+
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  text[SELECTED] = { 0.937, 0.941, 0.945 }
+  text[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  text[ACTIVE] = { 0.937, 0.941, 0.945 }
+  text[PRELIGHT] = { 0.937, 0.941, 0.945 }
+
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[SELECTED] = { 0.937, 0.941, 0.945 }
+  fg[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  fg[ACTIVE] = { 0.937, 0.941, 0.945 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*" style "default"
+
+style "ToolTip"
+{
+  bg[NORMAL] = { 0.937, 0.941, 0.945 }
+  base[NORMAL] = { 0.988, 0.988, 0.988 }
+  text[NORMAL] = { 0.192, 0.212, 0.231 }
+  fg[NORMAL] = { 0.192, 0.212, 0.231 }
+}
+
+widget "gtk-tooltip" style "ToolTip"
+widget "gtk-tooltips" style "ToolTip"
+
+style "MenuItem"
+{
+  bg[PRELIGHT] = { 0.239, 0.682, 0.914 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*MenuItem" style "MenuItem"
+EOF3
+
+cat > gtkrc-2.0 << 'EOF4'
+# created by KDE Plasma, Sun Jan 14 19:24:51 2018
+#
+# If you do not want Plasma to override your GTK settings, select
+# Colors in the System Settings and disable the checkbox
+# "Apply colors to non-Qt applications"
+#
+#
+
+gtk-alternative-button-order = 1
+
+style "default"
+{
+  bg[NORMAL] = { 0.192, 0.212, 0.231 }
+  bg[SELECTED] = { 0.239, 0.682, 0.914 }
+  bg[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  bg[ACTIVE] = { 0.169, 0.184, 0.204 }
+  bg[PRELIGHT] = { 0.192, 0.212, 0.231 }
+
+  base[NORMAL] = { 0.137, 0.149, 0.161 }
+  base[SELECTED] = { 0.239, 0.682, 0.914 }
+  base[INSENSITIVE] = { 0.192, 0.212, 0.231 }
+  base[ACTIVE] = { 0.239, 0.682, 0.914 }
+  base[PRELIGHT] = { 0.239, 0.682, 0.914 }
+
+  text[NORMAL] = { 0.937, 0.941, 0.945 }
+  text[SELECTED] = { 0.937, 0.941, 0.945 }
+  text[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  text[ACTIVE] = { 0.937, 0.941, 0.945 }
+  text[PRELIGHT] = { 0.937, 0.941, 0.945 }
+
+  fg[NORMAL] = { 0.937, 0.941, 0.945 }
+  fg[SELECTED] = { 0.937, 0.941, 0.945 }
+  fg[INSENSITIVE] = { 0.169, 0.184, 0.204 }
+  fg[ACTIVE] = { 0.937, 0.941, 0.945 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*" style "default"
+
+style "ToolTip"
+{
+  bg[NORMAL] = { 0.937, 0.941, 0.945 }
+  base[NORMAL] = { 0.988, 0.988, 0.988 }
+  text[NORMAL] = { 0.192, 0.212, 0.231 }
+  fg[NORMAL] = { 0.192, 0.212, 0.231 }
+}
+
+widget "gtk-tooltip" style "ToolTip"
+widget "gtk-tooltips" style "ToolTip"
+
+style "MenuItem"
+{
+  bg[PRELIGHT] = { 0.239, 0.682, 0.914 }
+  fg[PRELIGHT] = { 0.937, 0.941, 0.945 }
+}
+
+class "*MenuItem" style "MenuItem"
+EOF4
 cd ..
 }
 
