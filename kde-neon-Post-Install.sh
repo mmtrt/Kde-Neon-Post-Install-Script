@@ -279,6 +279,13 @@ echo "TabBarVisibility=ShowTabBarWhenNeeded" >> konsolerc
 echo "[BusyCursorSettings]" > klaunchrc
 echo "Blinking=false" >> klaunchrc
 echo "Bouncing=false" >> klaunchrc
+
+echo "[Confirmations]" > kiorc
+echo "ConfirmDelete=true" >> kiorc
+echo "ConfirmTrash=false" >> kiorc
+echo "" >> kiorc
+echo "[Executable scripts]" >> kiorc
+echo "behaviourOnLaunch=open" >> kiorc
 cd ..
 }
 
