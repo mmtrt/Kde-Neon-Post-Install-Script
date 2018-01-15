@@ -240,6 +240,17 @@ echo "NumLock=0" >> kcminputrc
 echo "[KSplash]" > ksplashrc
 echo "Engine=none" >> ksplashrc
 echo "Theme=None" >> ksplashrc
+
+echo "[Show]" > kservicemenurc
+echo "bluedevilfileitemaction=false" >> kservicemenurc
+echo "compressfileitemaction=true" >> kservicemenurc
+echo "extractfileitemaction=true" >> kservicemenurc
+echo "installFont=true" >> kservicemenurc
+echo "kactivitymanagerd_fileitem_linking_plugin=false" >> kservicemenurc
+echo "kdeconnectsendfile=false" >> kservicemenurc
+echo "openTerminalHere=true" >> kservicemenurc
+echo "runInKonsole=true" >> kservicemenurc
+echo "slideshow=false" >> kservicemenurc
 cd ..
 }
 
