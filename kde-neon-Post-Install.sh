@@ -353,6 +353,11 @@ echo "" >> kateschemarc
 echo "[my]" >> kateschemarc
 echo "Font=Hack,12,-1,7,50,0,0,0,0,0,Regular" >> kateschemarc
 echo "dummy=prevent-empty-group" >> kateschemarc
+
+echo "[General Options]" > kwriterc
+echo "ShowMenuBar=false" >> kwriterc
+echo "ShowPath=false" >> kwriterc
+echo "ShowStatusBar=true" >> kwriterc
 cd ..
 }
 
