@@ -231,6 +231,9 @@ echo "showToolTips=false" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "[IconsMode]" > dolphinrc
 echo "FontWeight=50" >> dolphinrc
 echo "IconSize=48" >> dolphinrc
+echo "[Main]" > systemsettingsrc
+echo "ActiveView=icon_mode" >> systemsettingsrc
+
 cd ..
 }
 
