@@ -226,6 +226,7 @@ echo "showAllItems=true" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "[Containments][2][Applets][5][Configuration][General]" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "launchers=applications:systemsettings.desktop,applications:org.kde.kinfocenter.desktop,applications:org.kde.ksysguard.desktop,applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop" >> plasma-org.kde.plasma.desktop-appletsrc
+echo "showToolTips=false" >> plasma-org.kde.plasma.desktop-appletsrc
 cd ..
 }
 
