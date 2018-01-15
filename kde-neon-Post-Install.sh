@@ -286,6 +286,66 @@ echo "ConfirmTrash=false" >> kiorc
 echo "" >> kiorc
 echo "[Executable scripts]" >> kiorc
 echo "behaviourOnLaunch=open" >> kiorc
+
+cat > kded5rc <<'EOF'
+[Module-appmenu]
+autoload=true
+
+[Module-baloosearchmodule]
+autoload=true
+
+[Module-bluedevil]
+autoload=true
+
+[Module-device_automounter]
+autoload=true
+
+[Module-freespacenotifier]
+autoload=true
+
+[Module-kded_printmanager]
+autoload=false
+
+[Module-keyboard]
+autoload=true
+
+[Module-khotkeys]
+autoload=true
+
+[Module-kscreen]
+autoload=true
+
+[Module-ksysguard]
+autoload=true
+
+[Module-ktimezoned]
+autoload=true
+
+[Module-kwrited]
+autoload=true
+
+[Module-networkmanagement]
+autoload=true
+
+[Module-networkstatus]
+autoload=true
+
+[Module-plasmavault]
+autoload=false
+
+[Module-proxyscout]
+autoload=true
+
+[Module-solidautoeject]
+autoload=true
+
+[Module-statusnotifierwatcher]
+autoload=true
+
+[Module-touchpad]
+autoload=false
+EOF
+
 cd ..
 }
 
