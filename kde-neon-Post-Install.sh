@@ -217,6 +217,9 @@ sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
 kdecustomcfgs () {
+cd ~/.config
+
+cd ..
 }
 
 rawplasmoidscnv () {
