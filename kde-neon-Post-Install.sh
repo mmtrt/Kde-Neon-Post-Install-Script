@@ -223,6 +223,9 @@ sed -i -e 's|ksplashrc_ksplash_theme=Breeze|ksplashrc_ksplash_theme=None|g;s|ksp
 
 sed -i -e 's|extraItems=org.kde.discovernotifier,org.kde.kdeconnect,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.vault,org.kde.plasma.volume|extraItems=org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.devicenotifier,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.mediacontroller,org.kde.discovernotifier|g;s|knownItems=org.kde.discovernotifier,org.kde.kdeconnect,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.clipboard,org.kde.plasma.devicenotifier,org.kde.plasma.mediacontroller,org.kde.plasma.networkmanagement,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.vault,org.kde.plasma.volume|knownItems=org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.discovernotifier,org.kde.kdeconnect|g;s|plugin=org.kde.plasma.taskmanager|plugin=org.kde.plasma.icontasks|g;s|plugin=org.kde.plasma.kickoff|plugin=org.kde.plasma.kicker|g' plasma-org.kde.plasma.desktop-appletsrc
 echo "showAllItems=true" >> plasma-org.kde.plasma.desktop-appletsrc
+echo "" >> plasma-org.kde.plasma.desktop-appletsrc
+echo "[Containments][2][Applets][5][Configuration][General]" >> plasma-org.kde.plasma.desktop-appletsrc
+echo "launchers=applications:systemsettings.desktop,applications:org.kde.kinfocenter.desktop,applications:org.kde.ksysguard.desktop,applications:org.kde.dolphin.desktop,applications:org.kde.konsole.desktop" >> plasma-org.kde.plasma.desktop-appletsrc
 cd ..
 }
 
