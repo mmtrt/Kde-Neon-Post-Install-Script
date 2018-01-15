@@ -234,6 +234,9 @@ echo "IconSize=48" >> dolphinrc
 echo "[Main]" > systemsettingsrc
 echo "ActiveView=icon_mode" >> systemsettingsrc
 
+echo "[Keyboard]" > kcminputrc
+echo "NumLock=0" >> kcminputrc
+
 cd ..
 }
 
