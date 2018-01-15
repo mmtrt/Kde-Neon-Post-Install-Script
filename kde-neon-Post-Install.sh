@@ -216,6 +216,9 @@ sudo apt install -f -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
+kdecustomcfgs () {
+}
+
 rawplasmoidscnv () {
 echo -e ''
 echo -e '\e[7mExtracting Plasmoids from this Script for Installing.\e[0m'
@@ -2072,4 +2075,5 @@ rawplasmoidscnv
 wgetpkgsNinst
 delpkgs
 delppas
+kdecustomcfgs
 endgreet
