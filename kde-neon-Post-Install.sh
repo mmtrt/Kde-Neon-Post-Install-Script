@@ -217,6 +217,8 @@ sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
 kdecustomcfgs () {
+echo -e ''
+echo -e '\e[7mInstalling kde custom configs.\e[0m'
 cd ~/.config
 
 sed -i -e 's|ksplashrc_ksplash_theme=Breeze|ksplashrc_ksplash_theme=None|g;s|ksplashrc_ksplash_engine=KSplashQML|ksplashrc_ksplash_engine=None|g' startupconfig
@@ -726,6 +728,7 @@ kquitapp5 plasmashell &> /dev/null
 sleep 3
 kstart5 plasmashell &> /dev/null
 sleep 3
+echo -e '\e[7mDone.\e[0m'
 }
 
 rawplasmoidscnv () {
