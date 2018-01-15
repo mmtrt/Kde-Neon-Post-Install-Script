@@ -237,6 +237,9 @@ echo "ActiveView=icon_mode" >> systemsettingsrc
 echo "[Keyboard]" > kcminputrc
 echo "NumLock=0" >> kcminputrc
 
+echo "[KSplash]" > ksplashrc
+echo "Engine=none" >> ksplashrc
+echo "Theme=None" >> ksplashrc
 cd ..
 }
 
