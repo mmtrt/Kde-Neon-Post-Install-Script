@@ -275,6 +275,10 @@ echo "ShowMenuBarByDefault=false" >> konsolerc
 echo "" >> konsolerc
 echo "[TabBar]" >> konsolerc
 echo "TabBarVisibility=ShowTabBarWhenNeeded" >> konsolerc
+
+echo "[BusyCursorSettings]" > klaunchrc
+echo "Blinking=false" >> klaunchrc
+echo "Bouncing=false" >> klaunchrc
 cd ..
 }
 
