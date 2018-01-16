@@ -182,18 +182,14 @@ fi
 if [ $(chkpp2) -eq 1 ]; then
 echo -e ''
 echo -e '\e[7mInstalling Smplayer.\e[0m'
-sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null
-sudo apt update -y &> /dev/null
-sudo apt install smplayer -y &> /dev/null
+sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install smplayer -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp3) -eq 1 ]; then
 echo -e ''
 echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
-sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null
-sudo apt update -y &> /dev/null
-sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
+sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null && sudo apt update -y &> /dev/null && sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
@@ -204,36 +200,29 @@ fi
 if [ $(chkpp5) -eq 1 ]; then
 echo -e ''
 echo -e '\e[7mInstalling mpv.\e[0m'
-sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null
-sudo apt update -y &> /dev/null
-sudo apt install mpv -y &> /dev/null
+sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null && sudo apt update -y &> /dev/null && sudo apt install mpv -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp6) -eq 1 ]; then
 echo -e ''
 echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
-sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
-sudo apt update -y &> /dev/null
-sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
+sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null && sudo apt update -y &> /dev/null && sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 echo -e ''
 echo -e '\e[7mDone with PPAs and Installing their Packages.\e[0m'
 echo -e ''
 echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
-sudo apt -y purge firefox* vim -y &> /dev/null
-sudo apt autoremove -y &> /dev/null
+sudo apt -y purge firefox* vim -y &> /dev/null && sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
-sudo apt update &> /dev/null
-sudo apt upgrade -y &> /dev/null
+sudo apt update &> /dev/null && sudo apt upgrade -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e '\e[7mAPT install -f & autoremove if any FOUND.\e[0m'
-sudo apt install -f -y &> /dev/null
-sudo apt autoremove -y &> /dev/null
+sudo apt install -f -y &> /dev/null && sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
 kdecustomcfgs () {
