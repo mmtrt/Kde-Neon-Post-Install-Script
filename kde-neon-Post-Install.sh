@@ -64,11 +64,19 @@ bcomdeb="$chkbcomdeb"
 wget --accept "*.deb" --content-disposition --trust-server-names "https://go.microsoft.com/fwlink/?LinkID=760868" &> /dev/null
 chkcodedeb="$(ls | grep -E 'code')"
 codedeb="$chkcodedeb"
+
+wget https://www.virtualbox.org/wiki/Linux_Downloads &> /dev/null
+chkosc="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | wc -l)"
+if [ $chkosc -eq 1 ]; then
+getvblk="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | awk '{print $11}'|sed 's|href="||g;s|"><span||g')"
+wget $getvblk
+vbdeb="$(ls | grep virtualbox)"
+fi
 echo -e '\e[7mDone.\e[0m'
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
-for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb} p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
+for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb} ${vbdeb} p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
 do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
@@ -84,7 +92,7 @@ echo -e '\e[7mInstalling steam dependencies.\e[0m'
 sudo apt install xterm libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
-rm ${bcomdeb} ${codedeb}
+rm ${bcomdeb} ${codedeb} ${vbdeb}
 
 echo -e ''
 echo -e '\e[7mInstalling KDE Plasmoids.\e[0m'
