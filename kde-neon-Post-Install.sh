@@ -180,18 +180,18 @@ sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
 fi
 
 if [ $(chkpp2) -eq 1 ]; then
-sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling Smplayer.\e[0m'
+sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null
 sudo apt update -y &> /dev/null
 sudo apt install smplayer -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp3) -eq 1 ]; then
-sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
+sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null
 sudo apt update -y &> /dev/null
 sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
@@ -202,18 +202,18 @@ sudo add-apt-repository ppa:mc3man/xerus-media -y &> /dev/null
 fi
 
 if [ $(chkpp5) -eq 1 ]; then
-sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling mpv.\e[0m'
+sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null
 sudo apt update -y &> /dev/null
 sudo apt install mpv -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp6) -eq 1 ]; then
-sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
+sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
 sudo apt update -y &> /dev/null
 sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
