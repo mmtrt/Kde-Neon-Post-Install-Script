@@ -217,8 +217,14 @@ fi
 
 if [ $(chkpp7) -eq 1 ]; then
 sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
-fi
+echo -e ''
+echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
+sudo apt update -y &> /dev/null
+sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
+fi
+echo -e ''
+echo -e '\e[7mDone with PPAs and Installing their Packages.\e[0m'
 echo -e ''
 echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt -y purge firefox* vim -y &> /dev/null
