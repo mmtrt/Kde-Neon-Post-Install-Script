@@ -195,6 +195,11 @@ fi
 
 if [ $(chkpp4) -eq 1 ]; then
 sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null
+echo -e ''
+echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
+sudo apt update -y &> /dev/null
+sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp5) -eq 1 ]; then
