@@ -69,7 +69,7 @@ wget https://www.virtualbox.org/wiki/Linux_Downloads &> /dev/null
 chkosc="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | wc -l)"
 if [ $chkosc -eq 1 ]; then
 getvblk="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | awk '{print $11}'|sed 's|href="||g;s|"><span||g')"
-wget $getvblk
+wget $getvblk &> /dev/null
 vbdeb="$(ls | grep virtualbox)"
 fi
 
