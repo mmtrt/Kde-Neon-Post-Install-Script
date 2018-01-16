@@ -208,6 +208,11 @@ fi
 
 if [ $(chkpp6) -eq 1 ]; then
 sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null
+echo -e ''
+echo -e '\e[7mInstalling mpv.\e[0m'
+sudo apt update -y &> /dev/null
+sudo apt install mpv -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp7) -eq 1 ]; then
