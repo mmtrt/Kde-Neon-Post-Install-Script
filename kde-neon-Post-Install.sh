@@ -10,13 +10,13 @@
 #
 
 chkwgf () {
-ls | grep -E 'graphics-drivers|ffmpeg-3|index.html|ppa|xerus-media|mpv-tests|papirus' | wc -l
+ls | grep -E 'graphics-drivers|index.html|ppa|xerus-media|mpv-tests|papirus' | wc -l
 }
 
 delppas () {
 echo -e ''
 echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
-for f in graphics-drivers ffmpeg-3 index.html ppa xerus-media mpv-tests papirus
+for f in graphics-drivers index.html ppa xerus-media mpv-tests papirus
 do
 rm $f
 done
@@ -36,7 +36,7 @@ echo -e '\e[7mRemoved.\e[0m'
 wgetppadata () {
 echo -e ''
 echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
-for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~jonathonf/+archive/ubuntu/ffmpeg-3 https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
+for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
 do
 wget $ppas &> /dev/null
 done
@@ -146,9 +146,6 @@ chkpp1 () {
 cat graphics-drivers | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-chkpp2 () {
-cat ffmpeg-3 | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
 
 chkpp3 () {
 cat index.html | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
@@ -178,10 +175,6 @@ echo -e ''
 echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
 if [ $(chkpp1) -eq 1 ]; then
 sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
-fi
-
-if [ $(chkpp2) -eq 1 ]; then
-sudo add-apt-repository ppa:jonathonf/ffmpeg-3 -y &> /dev/null
 fi
 
 if [ $(chkpp3) -eq 1 ]; then
