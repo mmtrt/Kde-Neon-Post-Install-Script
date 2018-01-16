@@ -95,7 +95,7 @@ echo -e '\e[7mInstalling steam dependencies.\e[0m'
 sudo apt install xterm libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
-rm ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb}
+rm ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb} Linux_Downloads
 
 echo -e ''
 echo -e '\e[7mInstalling KDE Plasmoids.\e[0m'
