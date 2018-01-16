@@ -147,27 +147,27 @@ cat graphics-drivers | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release 
 }
 
 
-chkpp3 () {
+chkpp2 () {
 cat index.html | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-chkpp4 () {
+chkpp3 () {
 cat ppa | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-chkpp5 () {
+chkpp4 () {
 cat xerus-media | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-chkpp6 () {
+chkpp5 () {
 cat mpv-tests | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-chkpp7 () {
+chkpp6 () {
 cat papirus | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
 
-if [ ! $(chkwgf) -eq 7 ]; then
+if [ ! $(chkwgf) -eq 6 ]; then
 wgetppadata
 fi
 
@@ -177,7 +177,7 @@ if [ $(chkpp1) -eq 1 ]; then
 sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
 fi
 
-if [ $(chkpp3) -eq 1 ]; then
+if [ $(chkpp2) -eq 1 ]; then
 sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling Smplayer.\e[0m'
@@ -186,7 +186,7 @@ sudo apt install smplayer -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
-if [ $(chkpp4) -eq 1 ]; then
+if [ $(chkpp3) -eq 1 ]; then
 sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
@@ -195,11 +195,11 @@ sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-openc
 echo -e '\e[7mDone.\e[0m'
 fi
 
-if [ $(chkpp5) -eq 1 ]; then
+if [ $(chkpp4) -eq 1 ]; then
 sudo add-apt-repository ppa:mc3man/xerus-media -y &> /dev/null
 fi
 
-if [ $(chkpp6) -eq 1 ]; then
+if [ $(chkpp5) -eq 1 ]; then
 sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling mpv.\e[0m'
@@ -208,7 +208,7 @@ sudo apt install mpv -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 fi
 
-if [ $(chkpp7) -eq 1 ]; then
+if [ $(chkpp6) -eq 1 ]; then
 sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null
 echo -e ''
 echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
