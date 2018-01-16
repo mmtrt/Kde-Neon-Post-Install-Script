@@ -171,6 +171,8 @@ if [ ! $(chkwgf) -eq 6 ]; then
 wgetppadata
 fi
 
+divertpkgs
+
 echo -e ''
 echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
 if [ $(chkpp1) -eq 1 ]; then
@@ -223,7 +225,6 @@ echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt -y purge firefox* vim -y &> /dev/null
 sudo apt autoremove -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
-divertpkgs
 echo -e ''
 echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
 sudo apt update &> /dev/null
