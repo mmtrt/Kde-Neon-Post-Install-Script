@@ -79,6 +79,11 @@ echo -e '\e[7mInstalling gitkraken dependencies.\e[0m'
 sudo apt install libgnome-keyring-common libgnome-keyring-dev -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
+echo -e ''
+echo -e '\e[7mInstalling steam dependencies.\e[0m'
+sudo apt install xterm libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+
 rm ${bcomdeb} ${codedeb}
 
 echo -e ''
