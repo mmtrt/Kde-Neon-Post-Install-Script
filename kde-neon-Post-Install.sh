@@ -186,6 +186,11 @@ fi
 
 if [ $(chkpp3) -eq 1 ]; then
 sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null
+echo -e ''
+echo -e '\e[7mInstalling Smplayer.\e[0m'
+sudo apt update -y &> /dev/null
+sudo apt install smplayer -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
 fi
 
 if [ $(chkpp4) -eq 1 ]; then
