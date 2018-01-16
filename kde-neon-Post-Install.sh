@@ -72,11 +72,14 @@ getvblk="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | awk '{pr
 wget $getvblk
 vbdeb="$(ls | grep virtualbox)"
 fi
+
+wget --accept "*.deb" --content-disposition --trust-server-names "https://discordapp.com/api/download?platform=linux&format=deb" &> /dev/null
+dcdeb=$(ls | grep discord)
 echo -e '\e[7mDone.\e[0m'
 
 echo -e ''
 echo -e '\e[7mInstalling DEB PKGS.\e[0m'
-for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb} ${vbdeb} p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
+for pkgdebins in teamviewer-host_amd64.deb gitkraken-amd64.deb steam.deb ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb} p7zip_16.02+dfsg-4_amd64.deb p7zip-full_16.02+dfsg-4_amd64.deb p7zip-rar_16.02-1_amd64.deb
 do
 sudo apt install ./$pkgdebins -y &> /dev/null
 done
@@ -92,7 +95,7 @@ echo -e '\e[7mInstalling steam dependencies.\e[0m'
 sudo apt install xterm libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 -y &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
-rm ${bcomdeb} ${codedeb} ${vbdeb}
+rm ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb}
 
 echo -e ''
 echo -e '\e[7mInstalling KDE Plasmoids.\e[0m'
