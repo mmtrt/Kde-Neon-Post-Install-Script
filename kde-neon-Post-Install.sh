@@ -106,6 +106,21 @@ done
 echo -e '\e[7mDone.\e[0m'
 }
 
+fixlnf () {
+echo -e ''
+echo -e '\e[7mChecking for qml-module.\e[0m'
+chkqmokk () {
+apt list --installed 2>&1 | grep qml-module-org-kde-kcm | wc -l
+}
+
+if [ $(chkqmokk) -eq 0 ]; then
+sudo apt install qml-module-org-kde-kcm -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+else
+echo -e '\e[7mNot needed its already installed.\e[0m'
+fi
+}
+
 endgreet () {
 echo -e ''
 echo -e '\e[7mFinished With the All Downloads & Installing Debs & Plasmoids.\e[0m'
@@ -2609,6 +2624,7 @@ echo -e '\e[7mDone.\e[0m'
 rmdivertpkgs
 rawplasmoidscnv
 wgetpkgsNinst
+fixlnf
 delpkgs
 delppas
 endgreet
