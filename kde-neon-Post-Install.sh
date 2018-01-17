@@ -179,6 +179,7 @@ cd ~/.config
 
 sed -i -e 's|ksplashrc_ksplash_theme=Breeze|ksplashrc_ksplash_theme=None|g;s|ksplashrc_ksplash_engine=KSplashQML|ksplashrc_ksplash_engine=None|g' startupconfig
 
+sed -i "40,43d;79,82d;87,90d;95,102d" plasma-org.kde.plasma.desktop-appletsrc
 sed -i -e 's|extraItems=*|extraItems=org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.devicenotifier,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.mediacontroller,org.kde.discovernotifier|g;s|knownItems=*|knownItems=org.kde.plasma.clipboard,org.kde.plasma.networkmanagement,org.kde.plasma.volume,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.notifications,org.kde.plasma.printmanager,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.discovernotifier,org.kde.kdeconnect|g;s|plugin=org.kde.plasma.taskmanager|plugin=org.kde.plasma.icontasks|g;s|plugin=org.kde.plasma.kickoff|plugin=org.kde.plasma.kicker|g' plasma-org.kde.plasma.desktop-appletsrc
 echo "showAllItems=true" >> plasma-org.kde.plasma.desktop-appletsrc
 echo "" >> plasma-org.kde.plasma.desktop-appletsrc
