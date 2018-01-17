@@ -9,6 +9,113 @@
 # Date: Jan 12 2018
 #
 
+fixlnf () {
+echo -e ''
+echo -e '\e[7mChecking for qml-module.\e[0m'
+chkqmokk () {
+apt list --installed 2>&1 | grep qml-module-org-kde-kcm | wc -l
+}
+
+if [ $(chkqmokk) -eq 0 ]; then
+sudo apt install qml-module-org-kde-kcm -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+else
+echo -e '\e[7mNot needed its already installed.\e[0m'
+fi
+}
+
+ppafunc () {
+
+wgetppadata () {
+echo -e ''
+echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
+for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
+do
+wget $ppas &> /dev/null
+done
+echo -e '\e[7mDone.\e[0m'
+}
+
+delppas () {
+echo -e ''
+echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
+for f in graphics-drivers index.html ppa xerus-media mpv-tests papirus
+do
+rm $f
+done
+echo -e '\e[7mRemoved.\e[0m'
+}
+
+wgetppadata
+
+chkpp1 () {
+cat graphics-drivers | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+chkpp2 () {
+cat index.html | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+chkpp3 () {
+cat ppa | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+chkpp4 () {
+cat xerus-media | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+chkpp5 () {
+cat mpv-tests | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+chkpp6 () {
+cat papirus | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
+}
+
+echo -e ''
+echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
+if [ $(chkpp1) -eq 1 ]; then
+sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
+fi
+
+if [ $(chkpp2) -eq 1 ]; then
+echo -e ''
+echo -e '\e[7mInstalling Smplayer.\e[0m'
+sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install smplayer -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+fi
+
+if [ $(chkpp3) -eq 1 ]; then
+echo -e ''
+echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
+sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+fi
+
+if [ $(chkpp4) -eq 1 ]; then
+sudo add-apt-repository ppa:mc3man/xerus-media -y &> /dev/null
+fi
+
+if [ $(chkpp5) -eq 1 ]; then
+echo -e ''
+echo -e '\e[7mInstalling mpv.\e[0m'
+sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install mpv -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+fi
+
+if [ $(chkpp6) -eq 1 ]; then
+echo -e ''
+echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
+sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+fi
+echo -e ''
+echo -e '\e[7mDone with PPAs and Installing their Packages.\e[0m'
+
+delppas
+
+}
+
 delpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving DEB pkgs & Plasmoids leftovers.\e[0m'
@@ -17,6 +124,53 @@ do
 rm $f
 done
 echo -e '\e[7mRemoved.\e[0m'
+}
+
+endgreet () {
+echo -e ''
+echo -e '\e[7mFinished With the All Downloads & Installing Debs & Plasmoids.\e[0m'
+echo -e '\e[7mIm done Now you go Enjoy KDE Neon.\e[0m'
+echo -e ''
+}
+
+divertpkgs () {
+echo -e ''
+echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for new upgrade.\e[0m'
+sudo dpkg-divert --package libdrm-common --divert /usr/share/libdrm/amdgpu.ids.divert --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
+sudo dpkg-divert --package vlc --divert /usr/bin/qvlc.divert --rename /usr/bin/qvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/bin/cvlc.divert --rename /usr/bin/cvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/bin/nvlc.divert --rename /usr/bin/nvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/bin/rvlc.divert --rename /usr/bin/rvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/bin/vlc.divert --rename /usr/bin/vlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/bin/vlc-wrapper.divert --rename /usr/bin/vlc-wrapper &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/apport/package-hooks/source_vlc.py.divert --rename /usr/share/apport/package-hooks/source_vlc.py &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/zsh/vendor-completions/_vlc.divert --rename /usr/share/zsh/vendor-completions/_vlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/vlc-wrapper.1.gz.divert --rename /usr/share/man/man1/vlc-wrapper.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/vlc.1.gz.divert --rename /usr/share/man/man1/vlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/cvlc.1.gz.divert --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/nvlc.1.gz.divert --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/rvlc.1.gz.divert --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+}
+
+rmdivertpkgs () {
+echo -e ''
+echo -e '\e[7mRemoving VLC & libdrm-amdgpu Diverts to properly function after upgrades.\e[0m'
+sudo dpkg-divert --package libdrm-common --remove --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
+sudo dpkg-divert --package vlc --remove --rename /usr/bin/qvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/cvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/nvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/rvlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/vlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/vlc-wrapper &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/apport/package-hooks/source_vlc.py &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/zsh/vendor-completions/_vlc &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/vlc-wrapper.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/vlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
+sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
+echo -e '\e[7mDone.\e[0m'
 }
 
 wgetpkgsNinst () {
@@ -79,68 +233,6 @@ for plasmoidsins in 174323-Simple_Date_and_Time.plasmoid netspeed-widget-1.4.pla
 do
 plasmapkg2 -i $plasmoidsins &> /dev/null
 done
-echo -e '\e[7mDone.\e[0m'
-}
-
-fixlnf () {
-echo -e ''
-echo -e '\e[7mChecking for qml-module.\e[0m'
-chkqmokk () {
-apt list --installed 2>&1 | grep qml-module-org-kde-kcm | wc -l
-}
-
-if [ $(chkqmokk) -eq 0 ]; then
-sudo apt install qml-module-org-kde-kcm -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-else
-echo -e '\e[7mNot needed its already installed.\e[0m'
-fi
-}
-
-endgreet () {
-echo -e ''
-echo -e '\e[7mFinished With the All Downloads & Installing Debs & Plasmoids.\e[0m'
-echo -e '\e[7mIm done Now you go Enjoy KDE Neon.\e[0m'
-echo -e ''
-}
-
-divertpkgs () {
-echo -e ''
-echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for new upgrade.\e[0m'
-sudo dpkg-divert --package libdrm-common --divert /usr/share/libdrm/amdgpu.ids.divert --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
-sudo dpkg-divert --package vlc --divert /usr/bin/qvlc.divert --rename /usr/bin/qvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/bin/cvlc.divert --rename /usr/bin/cvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/bin/nvlc.divert --rename /usr/bin/nvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/bin/rvlc.divert --rename /usr/bin/rvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/bin/vlc.divert --rename /usr/bin/vlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/bin/vlc-wrapper.divert --rename /usr/bin/vlc-wrapper &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/apport/package-hooks/source_vlc.py.divert --rename /usr/share/apport/package-hooks/source_vlc.py &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/zsh/vendor-completions/_vlc.divert --rename /usr/share/zsh/vendor-completions/_vlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/vlc-wrapper.1.gz.divert --rename /usr/share/man/man1/vlc-wrapper.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/vlc.1.gz.divert --rename /usr/share/man/man1/vlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/cvlc.1.gz.divert --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/nvlc.1.gz.divert --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --divert /usr/share/man/man1/rvlc.1.gz.divert --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-}
-
-rmdivertpkgs () {
-echo -e ''
-echo -e '\e[7mRemoving VLC & libdrm-amdgpu Diverts to properly function after upgrades.\e[0m'
-sudo dpkg-divert --package libdrm-common --remove --rename /usr/share/libdrm/amdgpu.ids &> /dev/null
-sudo dpkg-divert --package vlc --remove --rename /usr/bin/qvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/cvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/nvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/rvlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/vlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/bin/vlc-wrapper &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/apport/package-hooks/source_vlc.py &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/zsh/vendor-completions/_vlc &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/vlc-wrapper.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/vlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/cvlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/nvlc.1.gz &> /dev/null
-sudo dpkg-divert --package vlc-nox  --remove --rename /usr/share/man/man1/rvlc.1.gz &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 }
 
@@ -665,98 +757,7 @@ echo -e '\e[7mDone.\e[0m'
 
 kdecustomcfgs
 divertpkgs
-
-ppafunc () {
-
-wgetppadata () {
-echo -e ''
-echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
-for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
-do
-wget $ppas &> /dev/null
-done
-echo -e '\e[7mDone.\e[0m'
-}
-
-delppas () {
-echo -e ''
-echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
-for f in graphics-drivers index.html ppa xerus-media mpv-tests papirus
-do
-rm $f
-done
-echo -e '\e[7mRemoved.\e[0m'
-}
-
-wgetppadata
-
-chkpp1 () {
-cat graphics-drivers | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-chkpp2 () {
-cat index.html | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-chkpp3 () {
-cat ppa | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-chkpp4 () {
-cat xerus-media | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-chkpp5 () {
-cat mpv-tests | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-chkpp6 () {
-cat papirus | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
-}
-
-echo -e ''
-echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
-if [ $(chkpp1) -eq 1 ]; then
-sudo add-apt-repository ppa:oibaf/graphics-drivers -y &> /dev/null
-fi
-
-if [ $(chkpp2) -eq 1 ]; then
-echo -e ''
-echo -e '\e[7mInstalling Smplayer.\e[0m'
-sudo add-apt-repository ppa:rvm/smplayer -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install smplayer -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-fi
-
-if [ $(chkpp3) -eq 1 ]; then
-echo -e ''
-echo -e '\e[7mInstalling Nvidia Proprietary drivers.\e[0m'
-sudo add-apt-repository ppa:graphics-drivers/ppa -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install --no-install-recommends nvidia-384 nvidia-settings nvidia-opencl-icd-384 ocl-icd-libopencl1 libvulkan1 libvdpau1 -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-fi
-
-if [ $(chkpp4) -eq 1 ]; then
-sudo add-apt-repository ppa:mc3man/xerus-media -y &> /dev/null
-fi
-
-if [ $(chkpp5) -eq 1 ]; then
-echo -e ''
-echo -e '\e[7mInstalling mpv.\e[0m'
-sudo add-apt-repository ppa:mc3man/mpv-tests -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install mpv -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-fi
-
-if [ $(chkpp6) -eq 1 ]; then
-echo -e ''
-echo -e '\e[7mInstalling adapta-kde arc-kde papirus-icon-theme.\e[0m'
-sudo add-apt-repository ppa:papirus/papirus -y &> /dev/null && sudo apt update &> /dev/null && sudo apt install --no-install-recommends adapta-kde arc-kde papirus-icon-theme -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-fi
-echo -e ''
-echo -e '\e[7mDone with PPAs and Installing their Packages.\e[0m'
-
-delppas
-
-}
+ppafunc
 
 echo -e ''
 echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
