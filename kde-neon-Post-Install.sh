@@ -9,20 +9,6 @@
 # Date: Jan 12 2018
 #
 
-chkwgf () {
-ls | grep -E 'graphics-drivers|index.html|ppa|xerus-media|mpv-tests|papirus' | wc -l
-}
-
-delppas () {
-echo -e ''
-echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
-for f in graphics-drivers index.html ppa xerus-media mpv-tests papirus
-do
-rm $f
-done
-echo -e '\e[7mRemoved.\e[0m'
-}
-
 delpkgs () {
 echo -e ''
 echo -e '\e[7mRemoving DEB pkgs & Plasmoids leftovers.\e[0m'
@@ -31,16 +17,6 @@ do
 rm $f
 done
 echo -e '\e[7mRemoved.\e[0m'
-}
-
-wgetppadata () {
-echo -e ''
-echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
-for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
-do
-wget $ppas &> /dev/null
-done
-echo -e '\e[7mDone.\e[0m'
 }
 
 wgetpkgsNinst () {
@@ -687,10 +663,36 @@ sleep 3
 echo -e '\e[7mDone.\e[0m'
 }
 
+kdecustomcfgs
+divertpkgs
+
+ppafunc () {
+
+wgetppadata () {
+echo -e ''
+echo -e '\e[7mGetting PPAs Data for Checking Base OS Exists.\e[0m'
+for ppas in https://launchpad.net/~graphics-drivers/+archive/ubuntu/ppa https://launchpad.net/~rvm/+archive/ubuntu/smplayer/ https://launchpad.net/~mc3man/+archive/ubuntu/mpv-tests https://launchpad.net/~mc3man/+archive/ubuntu/xerus-media https://launchpad.net/~oibaf/+archive/ubuntu/graphics-drivers https://launchpad.net/~papirus/+archive/ubuntu/papirus
+do
+wget $ppas &> /dev/null
+done
+echo -e '\e[7mDone.\e[0m'
+}
+
+delppas () {
+echo -e ''
+echo -e '\e[7mRemoving wget PPAs data leftovers.\e[0m'
+for f in graphics-drivers index.html ppa xerus-media mpv-tests papirus
+do
+rm $f
+done
+echo -e '\e[7mRemoved.\e[0m'
+}
+
+wgetppadata
+
 chkpp1 () {
 cat graphics-drivers | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
-
 
 chkpp2 () {
 cat index.html | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
@@ -711,13 +713,6 @@ cat mpv-tests | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | 
 chkpp6 () {
 cat papirus | grep $(lsb_release -sc) | sed -n 1p | grep $(lsb_release -sc) | wc -l
 }
-
-if [ ! $(chkwgf) -eq 6 ]; then
-wgetppadata
-fi
-
-kdecustomcfgs
-divertpkgs
 
 echo -e ''
 echo -e '\e[7mChecking PPAs Data if this OS codename exists then Adding PPAs.\e[0m'
@@ -758,6 +753,11 @@ echo -e '\e[7mDone.\e[0m'
 fi
 echo -e ''
 echo -e '\e[7mDone with PPAs and Installing their Packages.\e[0m'
+
+delppas
+
+}
+
 echo -e ''
 echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
 sudo apt purge firefox* vim -y &> /dev/null && sudo apt autoremove -y &> /dev/null
@@ -2627,5 +2627,4 @@ rawplasmoidscnv
 wgetpkgsNinst
 fixlnf
 delpkgs
-delppas
 endgreet
