@@ -133,6 +133,24 @@ echo -e '\e[7mIm done Now you go Enjoy KDE Neon.\e[0m'
 echo -e ''
 }
 
+purgefunc () {
+echo -e ''
+echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
+sudo apt purge firefox* vim -y &> /dev/null && sudo apt autoremove -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+}
+
+aptupdfar () {
+echo -e ''
+echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
+sudo apt update &> /dev/null && sudo apt upgrade -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+echo -e ''
+echo -e '\e[7mAPT install -f & autoremove if any FOUND.\e[0m'
+sudo apt install -f -y &> /dev/null && sudo apt autoremove -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+}
+
 divertpkgs () {
 echo -e ''
 echo -e '\e[7mDpkg is Diverting VLC & libdrm-amdgpu pkgs for new upgrade.\e[0m'
@@ -754,23 +772,6 @@ kstart5 plasmashell &> /dev/null
 sleep 3
 echo -e '\e[7mDone.\e[0m'
 }
-
-kdecustomcfgs
-divertpkgs
-ppafunc
-
-echo -e ''
-echo -e '\e[7mAPT purge & autoremove > FireFox & VIM.\e[0m'
-sudo apt purge firefox* vim -y &> /dev/null && sudo apt autoremove -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-echo -e ''
-echo -e '\e[7mAPT update & upgrade with new PPAs.\e[0m'
-sudo apt update &> /dev/null && sudo apt upgrade -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
-echo -e ''
-echo -e '\e[7mAPT install -f & autoremove if any FOUND.\e[0m'
-sudo apt install -f -y &> /dev/null && sudo apt autoremove -y &> /dev/null
-echo -e '\e[7mDone.\e[0m'
 
 rawplasmoidscnv () {
 echo -e ''
@@ -2623,6 +2624,11 @@ rm $SDT64 $NW64 $PATM64
 echo -e '\e[7mDone.\e[0m'
 }
 
+kdecustomcfgs
+divertpkgs
+ppafunc
+purgefunc
+aptupdfar
 rmdivertpkgs
 rawplasmoidscnv
 wgetpkgsNinst
