@@ -214,11 +214,15 @@ chkcodedeb="$(ls | grep -E 'code')"
 codedeb="$chkcodedeb"
 
 wget https://www.virtualbox.org/wiki/Linux_Downloads &> /dev/null
+wget -O vbex https://www.virtualbox.org/wiki/Downloads &> /dev/null
 chkosc="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | wc -l)"
 if [ $chkosc -eq 1 ]; then
 getvblk="$(cat Linux_Downloads | grep $(lsb_release -sc) | grep amd64 | awk '{print $11}'|sed 's|href="||g;s|"><span||g')"
+getvbexlk=$(cat vbex | grep extpack | awk '{print $10}'|sed 's|href="||g;s|"><span||g')
 wget $getvblk &> /dev/null
+wget $getvbexlk &> /dev/null
 vbdeb="$(ls | grep virtualbox)"
+vbexf="$(ls | grep vbox)"
 fi
 
 wget --accept "*.deb" --content-disposition --trust-server-names "https://discordapp.com/api/download?platform=linux&format=deb" &> /dev/null
@@ -241,6 +245,11 @@ echo -e '\e[7mDone.\e[0m'
 echo -e ''
 echo -e '\e[7mInstalling steam dependencies.\e[0m'
 sudo apt install xterm libgl1-mesa-dri:i386 libgl1-mesa-glx:i386 -y &> /dev/null
+echo -e '\e[7mDone.\e[0m'
+
+echo -e ''
+echo -e '\e[7mInstalling vbox ext-pack.\e[0m'
+echo y | /usr/bin/vboxmanage extpack install --replace $vbexf &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
 rm ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb} Linux_Downloads
