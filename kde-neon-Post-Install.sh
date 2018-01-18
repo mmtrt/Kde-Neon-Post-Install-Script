@@ -252,7 +252,7 @@ echo -e '\e[7mInstalling vbox ext-pack.\e[0m'
 echo y | /usr/bin/vboxmanage extpack install --replace $vbexf &> /dev/null
 echo -e '\e[7mDone.\e[0m'
 
-rm ${bcomdeb} ${codedeb} ${vbdeb} ${dcdeb} Linux_Downloads
+rm ${bcomdeb} ${codedeb} ${vbdeb} ${vbexf} ${dcdeb} Linux_Downloads vbex
 
 echo -e ''
 echo -e '\e[7mInstalling KDE Plasmoids.\e[0m'
